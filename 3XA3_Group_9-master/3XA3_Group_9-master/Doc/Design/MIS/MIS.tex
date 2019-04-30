@@ -1,0 +1,418 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
+\graphicspath{ {./} }
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\title{SE 3XA3: Module Interface Specification\\Ratava}
+
+\author{Team 9, Makiam Group
+		\\ Aidan McPhelim - mcpheima
+		\\ Alexie McDonald - mcdona16
+		\\ Illya Pilipenko - pilipeni
+}
+
+\date{\today}
+
+%\input{../Comments}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\begin{table}[bp]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+2018-11-08 & 1.0 & Created initial Draft\\
+2018-11-08 & 1.0 & Filled in a majority of module access routines\\
+2018-11-08 & 1.0 & Final touches\\
+2018-12-03 & 1.1 & Updated team name\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\section*{GenerateHash Module}
+
+\subsection*{Module}
+
+GenerateHash
+
+\subsection* {Uses}
+
+N/A
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+generate\_hash & Str, Str & seq of hex &  None\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+None
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+The hash type the user will pass to the retrieve hash algorithm function will be a hashtype supported by the python hashlib library
+
+\subsubsection* {Access Routine Semantics}
+
+generate\_hash($hash\_input, hash\_type$):
+\begin{itemize}
+\item output: $out := retrieve\_hash\_algorithm(hash\_type)(bytes(hash\_input))$
+\item exception: None
+\end{itemize}
+
+\subsubsection*{Local Functions}
+retrieve\_hash\_function: $Str \rightarrow hashfunction : seq of {0,1} \rightarrow seq of hex$ \\
+retrieve\_hash\_function(type) $hashfunction : type$\\
+
+\hspace{-18pt}bytes: $str \rightarrow seq of {0,1}$ \\
+bytes(string) $\equiv bytes of UTF-8 encoding of string$ \\
+
+\newpage
+
+\section* {UseHash Module}
+
+\subsection*{Module}
+
+UseHash
+
+\subsection* {Uses}
+
+GenerateHash
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+hash\_to\_colours & Str & seq of (tuple of $\mathbb{Z}$) & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+COLOUR\_AMOUNT: $\mathbb{Z}$ \\
+HEX\_COLOUR\_LEN: $\mathbb{Z}$ \\
+HEX\_BASE: $\mathbb{Z}$ \\
+MINIMUM\_COLOUR\_HASH\_LEN: $\mathbb{Z}$ \\
+
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+hash\_to\_colours($hash\_value$):
+\begin{itemize}
+\item{
+\begin{tabular}{| l | l |}
+\hline
+Condition & $out :=$ \\
+\hline
+$|hash\_value| \geq MINIMUM\_COLOUR\_HASH\_LEN$ & $ (i | i \in split\_hash(hash\_value, $ \\ & $ HEX\_COLOUR\_LEN, $ \\ & $COLOUR\_AMOUNT) \bullet $ \\ & $hex\_to\_rgb(i)) $ \\
+\hline
+$|hash\_value| < MINIMUM\_COLOUR\_HASH\_LEN$ & $ (i | i \in split\_hash($ \\ & $missing\_value(hash\_value, $ \\ & $ HEX\_COLOUR\_LEN, $ \\ & $ COLOUR\_AMOUNT)) \bullet$ \\ & $hex\_to\_rgb(i)) $ \\
+\hline
+\end{tabular}}
+\item exception: None
+\end{itemize}
+
+\subsubsection*{Local Functions}
+split\_hash: $str \times \mathbb{Z} \times \mathbb{Z} \rightarrow seq of {Str}$ \\
+split\_hash(hash\_value, length, amount) $\equiv tokens : (\forall i \mid 0 \leq i < amount \bullet tokens(i) = hash\_value[i*length: (i+1)*length])$ \\
+
+\hspace{-18pt}hex\_to\_rgb: $hex \rightarrow tuple(\mathbb{Z}, \mathbb{Z}, \mathbb{Z})$ \\
+hex\_to\_rgb(hex\_colour) $\equiv (|hex\_colour| \neq HEX\_COLOUR\_LEN \Rightarrow 0 | |hex\_colour| = HEX\_COLOUR\_LEN \Rightarrow tuple(hex\_colour[1:4], hex\_colour[2:5], hex\_colour[3:6])$ \\
+
+\hspace{-18pt}missing\_value: $str \times \mathbb{Z} \rightarrow str$ \\
+missing\_value(hash\_value) $\equiv hash\_value + hash\_value[:MINIMUM\_COLOUR\_LEN - |hash\_value|] $ \\
+
+\newpage
+
+\section* {GraphicsDraw Module}
+
+\subsection*{Module}
+
+GraphicsDraw
+
+\subsection* {Uses}
+
+TemplateDraw, UseHash
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+generateColours & $\mathbb{Z}$, Str & seq of Str & \\
+\hline
+fetch\_template & Str & seq of (seq of (tuple of $\mathbb{Z}, \mathbb{Z}, \mathbb{Z}, \mathbb{Z}$)) & \\
+\hline
+draw\_image & seq (seq of (seq of (tuple of $\mathbb{Z}, \mathbb{Z}, \mathbb{Z}, \mathbb{Z}$))), seq of Str &  & \\
+\hline
+show\_image &  & & \\
+\hline
+save\_image & Str & & \\
+
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+OUTPUT\_IMAGE: seq of (tuple of ($\mathbb{Z}, \mathbb{Z}, \mathbb{Z}, \mathbb{Z}, Str$))
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+generateColours($number\_of\_colours, user\_string$):
+\begin{itemize}
+\item output: $out :=hash\_to\_colours(userstring)$
+\item exception: None
+\end{itemize}
+
+
+\hspace{-18pt}fetch\_template($template\_name$):
+\begin{itemize}
+\item output: $out := generate\_template(template\_name)$
+\item exception: None
+\end{itemize}
+
+
+\hspace{-18pt}show\_image():
+\begin{itemize}
+\item transition: OUTPUT\_IMAGE will show in an image editor window
+\item output: None
+\item exception: None
+\end{itemize}
+
+\hspace{-18pt}draw\_image($template\_data, colours$):
+\begin{itemize}
+\item transition: $OUTPUT\_IMAGE := (i | 0 \leq i < |template\_data| \bullet$ \\ $(template\_data[0][i][0], template\_data[0][i][1], template\_data[0][i][2],$ \\ $ template\_data[0][i][3], colours[0])$ \\ $ +  (i | 0 \leq i < |template\_data| \bullet (template\_data[1][i][0], template\_data[1][i][1],$ \\ $ template\_data[1][i][2], template\_data[1][i][3], colours[1])$
+\item output: None
+\item exception: None
+\end{itemize}
+
+
+\hspace{-18pt}save\_image($location$):
+\begin{itemize}
+\item transition: OUTPUT\_IMAGE will be saved to $location$
+\item output: None
+\item exception: None
+\end{itemize}
+
+\subsubsection*{Local Functions}
+
+None
+
+\newpage
+
+\section* {TemplateDraw Module}
+
+\subsection*{Module}
+
+TemplateDraw
+
+\subsection* {Uses}
+
+None
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+generate\_template & Str & seq of (seq of (seq of (tuple of $\mathbb{Z}, \mathbb{Z}, \mathbb{Z}, \mathbb{Z}$))) & \\
+
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+PERSON\_TEMPLATE: seq of (seq of (seq of (tuple of $\mathbb{Z}, \mathbb{Z}, \mathbb{Z}, \mathbb{Z}$))) \\
+DOG\_TEMPLATE: seq of (seq of (seq of (tuple of $\mathbb{Z}, \mathbb{Z}, \mathbb{Z}, \mathbb{Z}$)))\\
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+generate\_template($template\_name$):
+\begin{itemize}
+\item output: $out := (template\_name =$ "Person" $\Rightarrow PERSON\_TEMPLATE | template\_name \\ =$ "Dog" $\Rightarrow DOG\_TEMPLATE)$
+\item exception: None
+\end{itemize}
+
+\subsubsection*{Local Functions}
+None
+
+\newpage
+
+\section* {GUI Module}
+
+\subsection*{Module}
+
+GUI
+
+\subsection* {Uses}
+
+GraphicsDraw
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+generate\_button\_clicked &  &  & \\
+\hline
+fix\_body\_colour &  &   & \\
+\hline
+fix\_accessory\_colour  &  &  & \\
+\hline
+fix\_template & &  & \\
+
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+COLOURS: seq of Str \\
+TEMPLATE: Str\\
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+generate\_button\_clicked():
+\begin{itemize}
+\item transition: draw\_image(fetch\_template(TEMPLATE), generateColours(COLOURS))
+\item output: None
+\item exception: None
+\end{itemize}
+
+\hspace{-18pt}fix\_body\_colour():
+\begin{itemize}
+\item transition: COLOURS[0] := text\_input\_1\_value
+\item output: None
+\item exception: None
+\end{itemize}
+
+\hspace{-18pt}fix\_accessory\_colour():
+\begin{itemize}
+\item transition: COLOURS[1] := text\_input\_2\_value
+\item output: None
+\item exception: None
+\end{itemize}
+
+\hspace{-18pt}fix\_template():
+\begin{itemize}
+\item transition: (person\_template = true $\Rightarrow$ TEMPLATE := "Person" | dog\_template = true $\Rightarrow$ TEMPLATE := "Dog")
+\item output: None
+\item exception: None
+\end{itemize}
+
+\end {document}

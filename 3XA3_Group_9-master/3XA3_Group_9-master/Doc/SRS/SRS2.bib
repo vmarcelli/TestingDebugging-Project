@@ -1,0 +1,268 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+
+\title{SE 3XA3: Software Requirements Specification\\Ratava}
+
+\author{Team 9, ???
+		\\ Aidan McPhelim - mcpheima
+		\\ Alexie McDonald - mcdona16
+		\\ Illya Pilipenko - pilipeni
+}
+
+\date{\today}
+
+%\input{../Comments}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\begin{table}[bp]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+2018-10-03 & 1.0 & Created initial Draft\\
+Date 2 & 1.1 & Notes\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+This document describes the requirements for Ratava.  The template for the Software
+Requirements Specification (SRS) is a subset of the Volere
+template~\citep{RobertsonAndRobertson2012}.  If you make further modifications
+to the template, you should explicity state what modifications were made.
+
+\section{Project Drivers}
+
+\subsection{The Purpose of the Project}
+Internet avatars became prevalent several years ago in online forums. They were originally not a part of standard practice, but were added in order to personalize responses and provide a sense of identity.
+
+The purpose of this project is to give users a program which can generate unique Avatars for them based on a string of their choosing, which will allow them to share it with their friends if they wish.
+
+
+\subsection{The Stakeholders}
+
+\subsubsection{The Client}
+Since the Professor and TA's of the class want their students to be successful and for the class to do well, they can be considered stakeholders for the software.
+
+\subsubsection{The Customers}
+The customers will be internet users at large. Users of social media websites, forums, instant messaging clients to name a few will make good use of an implementation that addresses this problem.
+
+\subsubsection{Other Stakeholders}
+There are no further stakeholder apparent for this project.
+
+\subsection{Mandated Constraints}
+The main constraint we have is the time constraint - in that we need to have the entire project done with all accompanying documentation by December the 5th.
+
+\subsection{Naming Conventions and Terminology}
+We haven't come across any terms that we need to specify as of yet
+
+\subsection{Relevant Facts and Assumptions}
+Users of the program are most likely going to be people who are used to computers and play games etc. but when designing the program and UI we will assume that users have no prior knowledge of the terminology involved.
+
+
+
+\section{Functional Requirements}
+
+\subsection{The Scope of the Work and the Product}
+
+\subsubsection{The Context of the Work}
+
+\subsubsection{Work Partitioning}
+\begin{table}[h!]
+\begin{tabular}{|l|l|l|}
+\hline
+Event Name & Input and Output & Summary \\ \hline
+           &                  &         \\ \hline
+           &                  &         \\ \hline
+\end{tabular}
+\end{table}
+\subsubsection{Individual Product Use Cases}
+
+\subsection{Functional Requirements}
+\begin{itemize}
+\item{Software shall output an image of type .jpg}
+\item{Software shall use a hash function to randomize colours and items}
+\item{Software shall allow user to select what qualities to fix (and by extention, what qualities to randomize)}
+\item{Software shall allow user to select an avatar template}
+\item{Software shall take to a string as input that is used to seed the hash function}
+\item{Software shall allow the user to select what hash function that is being used to randomize the elements}
+\item{Software shall allow the user to specify the output path}
+\item{Software shall save the image in the location that the user specifies}
+\item{Software shall provice access the help documentation}
+\item{Software shall open the image instantly in an external image editor upon user's request}
+\item{Software shall allow the user to modify the name of the output file}
+\end{itemize}
+
+\section{Non-functional Requirements}
+
+\subsection{Look and Feel Requirements}
+\subsubsection{Accessiblity}
+\begin{itemize}
+\item{The software shall implement accessible fonts. That would entail fonts that are sans-serif, simple, and highly ledgible}
+\item{The user interface elements (buttons, text) should have a high contrast with the background, to aid colour-blind users}
+\item{The user interface shall be compatible with a screen reader to aid those who are visually impaired}
+\item{The software shall use intuitive keystrokes throughout the user interface to the meaning of certain operations can be inferred.}
+\end{itemize}
+\subsection{Usability and Humanity Requirements}
+\subsubsection{Ease of Use}
+\begin{itemize}
+\item{User interface will be simple, so people who are 8 or above will be able to use it.}
+\end{itemize}
+\subsubsection{Ease of Learning}
+\begin{itemize}
+\item{Any user with basic knowledge of a computer's file system will be able to learn this software}
+\end{itemize}
+\subsection{Performance Requirements}
+\subsubsection{Speed Requirements}
+\begin{itemize}
+\item{The algorithm used to generate should minimize wait times for the user}
+\item{the program at most should take no longer than 5 seconds maximum. A study performed in 1995 says that 10 seconds is a tolerable wait time for a web response. Moreover, 1 second is the limit for the user's train of thought to flow continously. (Neilson, 1995)}
+\end{itemize}
+\subsubsection{Precision Requirements}
+\begin{itemize}
+\item{Pixels displayed to the user shall exactly match the pixel placement outlined in the templates}
+\end{itemize}
+\subsubsection{Reliability and Avaliability}
+\begin{itemize}
+\item{The software will be operable 24hrs a day, 7 days a week, 365 days a year, Due to the program being on a local machine with no dependency on any external resources other than a working file system and python compiler.}
+\end{itemize}
+\subsubsection{Capacity Requirements}
+\begin{itemize}
+\item{The software shall have an ultimited amount of concurrent users on unique machines, Due to the program being on a local machine.}
+\item{The software shall have a limit of one concurrent user per machine.}
+\end{itemize}
+\subsubsection{Expected Technological Environment}
+\label{sec:ETE}
+\begin{itemize}
+\item{The expected technological environment will ultimately be a computer that is running an operating system that can support usage of a python3 compiler and interpreter, and has a traditional file system.}
+\end{itemize}
+\subsubsection{Partner Applications}
+\begin{itemize}
+\item{There is no partner applications that the software will need to interface with.}
+\end{itemize}
+\subsection{Maintainability and Support Requirements}
+\subsubsection{Mainainability}
+\begin{itemize}
+\item{The software shall support the addition of new templates at a later date}
+\item{The software shall support the addition of new hash functions at a later date}
+\item{The software shall support the addition of new elements to the user interface at a later date}
+\item{The software shall be decomposed into modules with a level of low cohesion that allows them to be serviced without breaking the other modules}
+\end{itemize}
+\subsubsection{Portability}
+\begin{itemize}
+\item{ As outlined in \hyperref[sec:ETE]{Section 3.4.5} the software shall run on any operating system that supports the usage of a python compiler, interpreter, and modifications to the files present on the file system}
+\end{itemize}
+\subsection{Security Requirements}
+\begin{itemize}
+\item{The software shall dispose of all strings entered that hashed the functions}
+\item{Randomness of the hash function shall ensure that the hash string cannot be infered from the template it generates}
+\item{The software shall prevent data interceptions by running as a standalone application on a desktop computer}
+\end{itemize}
+\subsection{Cultural Requirements}
+\begin{itemize}
+\item{The software shall not use any symbols or imagery for templates that could offend the country using it}
+\end{itemize}
+\subsection{Legal Requirements}
+\begin{itemize}
+\item{The elements of the software shall support the requirements outlined in the licence underwhich the software is licenced.}
+\item{The software shall be compliant with all privacy regulations}
+\end{itemize}
+\subsection{Health and Safety Requirements}
+\begin{itemize}
+\item{The software shall be compliant with all health and safety standards}
+\end{itemize}
+
+This section is not in the original Volere template, but health and safety are
+issues that should be considered for every engineering project.
+
+\section{Project Issues}
+
+\subsection{Open Issues}
+None have been found so far.
+
+\subsection{Off-the-Shelf Solutions}
+There are already similar products available, such as https://robohash.org/, but
+string-hash based random avatar generation is a business field where getting
+off-the-shelf solutions from other developers for the purpose of using them in
+one's own product is a very difficult task.
+
+\subsection{New Problems}
+This software main problem that will exist after this software is in place is the restriction on resolution of avatar images. Users can of course still have higher resolution images, but in terms of generating random avatars that are unique to them, they will have to settle for a very low resolution.
+
+\subsection{Tasks}
+\begin{itemize}
+  \item plan for proof of concept demonstration
+  \item create a test plan
+  \item design and document revision 0
+  \item prepare for revision 0 demonstration
+  \item research into pixel art
+  \item create the template for software design
+  \item start work on the program
+\end{itemize}
+
+\subsection{Migration to the New Product}
+Since the project's service is simple, discrete, and has data stored only on the
+user's side, there are no requirements for migration to the new product, nor does
+any data need to be modified or translated for the new system.
+
+\subsection{Risks}
+
+\subsection{Costs}
+
+\subsection{User Documentation and Training}
+\begin{itemize}
+  \item User Documentation Requirements: the only user documentation needed is
+  an opeations manual describing how to use the product and what to expect from it.
+  \item Training Requirements: no training is needed to use the product.
+\end{itemize}
+
+\subsection{Waiting Room}
+\begin{itemize}
+\end{itemize}
+There are no requirements in the waiting room.
+
+\subsection{Ideas for Solutions}
+\begin{itemize}
+\end{itemize}
+There are no ideas for solutions.
+
+\bibliographystyle{plainnat}
+
+\bibliography{SRS}
+
+\newpage
+
+\section{Appendix}
+
+This section has been added to the Volere template.  This is where you can place
+additional information.
+
+\subsection{Symbolic Parameters}
+
+The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
+Their values are defined in this section for easy maintenance.
+
+
+\end{document}

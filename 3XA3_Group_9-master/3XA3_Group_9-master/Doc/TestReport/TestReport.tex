@@ -1,0 +1,182 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+\usepackage[dvipsnames]{xcolor}
+
+\title{SE 3XA3: Test Report\\Ratava}
+
+\author{Team 9, Makiam Group
+		\\ Aidan McPhelim \- mcpheima
+		\\ Alexie McDonald \- mcdona16
+		\\ Illya Pilipenko \- pilipeni
+}
+
+\date{\today}
+
+%\input{../Comments}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\begin{table}[bp]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+2018-09-19 & 0.0 & Initial draft created\\
+2018-09-03 & 0.1 & Team info updated\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\pagenumbering{arabic}
+
+This document provides a report of the testing done on the Ratava project.
+
+\section{Functional Requirements Evaluation}
+
+We had to review some of our functional requirements, but the rest were satisfied by our manual and automated testing.
+
+\section{Nonfunctional Requirements Evaluation}
+
+We had to review some of our non-functional requirements, but the rest were satisfied by our manual and automated testing.
+
+\subsection{Usability}
+
+The program was tested for usability by having users who have previously had no interaction with the system use it. The metrics were very informal, but provided feedback for improving the UI. In the end, the program was deemed user-friendly.
+
+\subsection{Performance}
+
+The program takes very little computational resources to run, and so all of the performance metrics were satisfied. The program was deemed to succeed well enough against its performance expectations that no data was collected.
+
+\section{Unit Testing}
+
+*\textbf{NOTE:} not all unit tests are shown here due to redundancy. \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Hash list returned is correct \\
+    \textbf{Input:} & - \\
+    \textbf{Output:} & Available hash list \\
+    \textbf{Expected:} & Available hash list \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Hash object corresponds with name \\
+    \textbf{Input:} & Hash name \\
+    \textbf{Output:} & Corresponding hash object \\
+    \textbf{Expected:} & Corresponding hash object \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Hash generates same output with same input \\
+    \textbf{Input:} & Test string \\
+    \textbf{Output:} & Two identical hash values \\
+    \textbf{Expected:} & Two identical hash values \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Hex value properly split into colours \\
+    \textbf{Input:} & Hex corresponding to the colour white \\
+    \textbf{Output:} & White colour \\
+    \textbf{Expected:} & White colour \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Hash value is split into colours \\
+    \textbf{Input:} & Hash value \\
+    \textbf{Output:} & List of colours \\
+    \textbf{Expected:} & List of colours \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Hash is used to find random int in range \\
+    \textbf{Input:} & Hash value \\
+    \textbf{Output:} & Int in range \\
+    \textbf{Expected:} & Int in range \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Template pixel array corresponds to stored pixel array \\
+    \textbf{Input:} & Template choice \\
+    \textbf{Output:} & Exact array of pixels corresponding to the template \\
+    \textbf{Expected:} & Exact array of pixels corresponding to the template \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Output image file type is .jpg \\
+    \textbf{Input:} & Hash string input \\
+    \textbf{Output:} & .jpg image file \\
+    \textbf{Expected:} & .jpg image file  \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\begin{tabular}{|cc|}
+    \hline
+    \textbf{Test:} & Image file name is the name that was specified \\
+    \textbf{Input:} & test \\
+    \textbf{Output:} & test.jpg \\
+    \textbf{Expected:} & test.jpg \\
+    \textbf{Result:} & \textcolor{Green}{PASS} \\
+    \hline
+\end{tabular} \\ \\
+
+\section{Changes Due to Testing}
+
+\section{Automated Testing}
+
+All of our unit testing for the GenerateHash, UseHash, TemplateDraw, and GraphicsDraw was automated.
+
+\section{Trace to Requirements}
+
+\section{Trace to Modules}
+
+\section{Code Coverage Metrics}
+
+For test coverage, we made an automated unit test case for every function that was able to be automated. For the rest, we did manual system testing.
+
+\bibliographystyle{plainnat}
+
+\bibliography{SRS}
+
+\end{document}

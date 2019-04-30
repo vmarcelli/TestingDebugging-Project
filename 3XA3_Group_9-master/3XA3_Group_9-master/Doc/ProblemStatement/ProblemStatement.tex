@@ -1,0 +1,80 @@
+\documentclass{article}
+
+\usepackage{tabularx}
+%\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{fancyhdr}
+\fancyhead[L]{September 21, 2018}
+\fancyhead[C]{3XA3 Problem Statement}
+\fancyhead[R]{Group 9}
+\pagestyle{fancy}
+
+\title{SE 3XA3: Problem Statement\\Ratava}
+
+\author{Team 9, Makiam Group
+		\\ Aidan McPhelim \- mcpheima
+		\\ Alexie McDonald \- mcdona16
+		\\ Illya Pilipenko \- pilipeni
+}
+
+\date{September 21, 2018}
+
+% \input{../Comments}
+
+\begin{document}
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+2018-09-19 & 1.0 & Initial draft created\\
+2018-09-19 & 1.1 & Formatted draft\\
+2018-09-20 & 1.2 & Modified section 0.3\\
+2018-12-03 & 1.3 & Updated team name\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage
+
+\maketitle
+
+\subsection{What Problem Are You Trying To Solve?}
+\ \ \ Internet avatars became prevalent several years ago in online forums. They were originally not a part of standard practice, but were added in order to personalize responses and provide a sense of identity. \\
+
+Process automation is in an of itself a growing field of study. This encompasses process automation in labour intensive fields, but it can also be used in instances that are highly repetative or instances where enumeration of the possibilities is a teidious task. \\
+
+The creation of avatars falls under the third catagory, as there are seemingly endless parameters that can be varied. Some of which are:
+\begin{itemize}
+\item{Type of entity present (animal, human, alien, inanimate object)}
+\item{Colour of entity components (clothing, hair, accessories)}
+\item{Presence of artistic style elements (shadows, patterns, filters)}
+\end{itemize}
+In order to make this process easier for users,  a generator should be created that takes these parameters and forms a set of combinations based on user input (what properties do you want randomzied?, Which items should be explicitly specified?).
+\begin{itemize}
+\item{Current generators are seeded with simply random numbers, but hash maps increase the randomness and possible combinations}
+\end{itemize}
+\subsection{Why Is This a Problem of Importance?}
+The presence of online avatars have triggered a number of different studies that have been conducted in order to see how certain avatar qualities (agency, anthropomorphism, and realism) influence people's perceptions of the person "behind the screen" (Fox et al., 2015). Generally, avatars that possess the following qualities lead to positive perceptions of the people that were represented by that avatar.
+\begin{itemize}
+\item{Avatars that were precived to be owned by a human (agency). (Fox et al., 2015)}
+\item{Avatars that depicted humans or humanoid entities (anthropomorphism). (Westerman, Tamborini, & Bowman, 2015)}
+\item{Avatars that depicted recognizable or familiar living entities. E.g. Animals (realism). (Kang & Watt, 2013)}
+\end{itemize}
+In addition to this, having a word or phrase generating this avatar adds another level of personalization as it can be a word or phrase that can be used to identify unique traits of the person.
+\subsection{What Is The Context of the Problem}
+The largest set of stakeholders will ultimately be internet users at large. Users of social media websites, forums, instant messaging clients to name a few will make good use of an implementation that addresses this problem. For the environment, it will be run locally on a computer.
+
+%\wss{comment}
+
+%\ds{comment}
+
+%\mj{comment}
+
+%\cm{comment}
+
+%\mh{comment}
+
+\end{document}
