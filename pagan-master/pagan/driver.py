@@ -1,3 +1,8 @@
+'''
+Test file to work with Pagan program because the default file did not work
+by itself
+'''
+
 # Import the pagan module.
 import pagan
 
