@@ -1,6 +1,10 @@
 '''
 Test file to work with Pagan program because the default file did not work
-by itself
+by itself.
+
+This file is to be used as the main template for testing in our project, since this 
+will most likely be the easiest way to do white-box and black-box testing.
+
 '''
 
 # Import the pagan module.
