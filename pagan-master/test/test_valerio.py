@@ -14,7 +14,15 @@ Image Creation Tests
 '''
 
 def buildWithHash(numOne, numTwo):
-    print()
+    #Create two images with the same string using passed in numbers
+    img = pagan.Avatar("", numOne)
+    img2 = pagan.Avatar("", numTwo)
+    
+    #Compate the images using the .img format
+    if(img.img == img2.img):
+        return True
+    else:
+        return False
 def buildWithString(stringOne, stringTwo):
     #Create two images from the two strings
     img = pagan.Avatar(stringOne)
