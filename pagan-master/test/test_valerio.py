@@ -23,6 +23,7 @@ def buildWithHash(numOne, numTwo):
         return True
     else:
         return False
+
 def buildWithString(stringOne, stringTwo):
     #Create two images from the two strings
     img = pagan.Avatar(stringOne)
@@ -35,6 +36,7 @@ def buildWithString(stringOne, stringTwo):
         return False
 
 def test_ImageCreation():
+    '''String Tests'''
     #True tests
     assert buildWithString("tree", "tree") == True
     assert buildWithString("12345", "12345") == True
@@ -44,6 +46,17 @@ def test_ImageCreation():
     assert buildWithString("tree", "apple") == False
     assert buildWithString("12345", "17892") == False
     assert buildWithString("voc@b", "#xtra!") == False
+
+    '''Hash Tests'''
+    #True Tests
+    assert buildWithHash(1, 1) == True
+    assert buildWithHash(23, 23) == True
+    assert buildWithHash(101, 101) == True
+
+    #False Tests
+    assert buildWithHash(1, 7) == False
+    assert buildWithHash(23, 42) == False
+    assert buildWithHash(101, 202) == False
 
 
 '''
