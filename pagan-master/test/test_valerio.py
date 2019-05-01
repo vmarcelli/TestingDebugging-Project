@@ -9,19 +9,24 @@ This file in particular uses white box style testing
 # Import the pagan module.
 import pagan
 
-# Acquire an arbitrary string.
-inpt = 'valerio'
+''' 
+Image Creation Tests 
+'''
 
+def buildWithHash(numOne, numTwo):
+    print()
 def buildWithString(stringOne, stringTwo):
+    #Create two images from the two strings
     img = pagan.Avatar(stringOne)
     img2 = pagan.Avatar(stringTwo)
-    
+
+    #compare the two images (Must use .img format to compare them)
     if(img.img == img2.img):
         return True
     else:
         return False
 
-def test_stringInput():
+def test_ImageCreation():
     #True tests
     assert buildWithString("tree", "tree") == True
     assert buildWithString("12345", "12345") == True
