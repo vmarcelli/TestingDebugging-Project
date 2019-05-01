@@ -15,7 +15,8 @@ inpt = 'valerio'
 def buildWithString(stringOne, stringTwo):
     img = pagan.Avatar(stringOne)
     img2 = pagan.Avatar(stringTwo)
-    if(img == img2):
+    
+    if(img.img == img2.img):
         return True
     else:
         return False
