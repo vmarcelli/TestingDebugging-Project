@@ -27,7 +27,7 @@ def test_umlaute():
 def test_show():
     """check only if error is raised"""
     img0 = pagan.Avatar("You rock!")
-    img0.show()
+    #img0.show()
 
 
 def test_change():
