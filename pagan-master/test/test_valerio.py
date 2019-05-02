@@ -56,5 +56,29 @@ def test_ImageCreation():
     #False Tests
     assert buildWithHash(1, 7) == False
     '''TODO: Fix these two hash tests, perhaps see what they generate'''
-    #assert buildWithHash(23, 42) == False
-    #assert buildWithHash(101, 202) == False
+    assert buildWithHash(0, 1) == False
+    assert buildWithHash(3, 2) == False
+
+    '''Combination Tests'''
+    imgTree1 = pagan.Avatar("Tree")
+    imgTree2 = pagan.Avatar("Tree", 0)
+    imgFalse1 = pagan.Avatar("Tree", 1)
+    imgFalse2 = pagan.Avatar("Tree", 3)
+    assert imgTree1.img == imgTree2.img
+    assert imgFalse1.img != imgFalse2.img
+
+def test_ImageChange():
+    '''Change Image Test'''
+    #True Tests
+    imgOne = pagan.Avatar("1")
+    imgZero = pagan.Avatar("0")
+    assert imgOne.img != imgZero.img
+    imgZero.change("1")
+    assert imgZero.img == imgOne.img
+
+    #False Tests
+    imgOne = pagan.Avatar("Chicken")
+    imgZero = pagan.Avatar("Chicken")
+    assert imgOne.img == imgZero.img
+    imgZero.change("Egg")
+    assert imgZero.img != imgOne.img

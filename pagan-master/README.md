@@ -64,38 +64,19 @@ This will run the unit tests inside of the 'test' folder.
 
 
 ### Python usage example:
+If you would like to see what happens when you change a string you may do so with the<br>pagan-master/driver.py file
+
+Simply change the variable inpt to whatever you would like
 ```python
-# Import the pagan module.
-import pagan
-
-# Acquire an arbitrary string.
+# Change this value to whatever string you would like
 inpt = 'pagan'
-
-# Use pagan to generate an avatar object based on an input string.
-# Optional: You may specify which hash function Pagan should use.
-# The functions are available as constants.
-# Default: MD5.
-img = pagan.Avatar(inpt, pagan.SHA512)
-
-# Open the avatar image in an
-# external image viewer.
-img.show()
-
-# Set an output path and a file name.
-# You don't need to specify a file ending.
-# Choose a path depending on your OS.
-outpath = 'output/'
-filename = inpt
-
-# Saves the avatar image as a .png file
-# by omitting the path and name. The
-# file endings will be generated automatically.
-img.save(outpath, filename)
-
-# You can change the avatar input and
-# hash function anytime.
-img.change('new input', pagan.SHA256)
 ```
+
+In your Anaconda Prompt while in the same directory as driver.py type:
+```
+>> python driver.py
+```
+This will generate an avatar based on your string value
 
 ### Supported Hashes
 
