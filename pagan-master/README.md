@@ -88,3 +88,26 @@ sha224 | pagan.SHA224
 sha256 | pagan.SHA256
 sha384 | pagan.SHA384
 sha512 | pagan.SHA512
+
+### Command Line Interface
+
+To use the CLI, in your terminal navigate to the 
+file folder:
+ ```
+ pagan\tools\console
+
+ ```
+ 
+ and run the command:
+ 
+ ```
+ >>>python pagan
+ ```
+ 
+ Usage:
+ 
+ pagan [-h] [--show] [--output OUTPUT] [--hash HASH] input [input ...]
+ 
+ 
+ 
+ 
