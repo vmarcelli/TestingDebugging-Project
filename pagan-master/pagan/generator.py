@@ -13,6 +13,7 @@ class FalseHashError(Exception):
     pass
 
 
+# region variable values
 # Set True to generate debug output in this module.
 DEBUG = False
 
@@ -55,7 +56,6 @@ FILE_TORSO = ('%s%spgn%sTORSO.pgn' % (PACKAGE_DIR, os.sep, os.sep))
 FILE_HAIR = ('%s%spgn%sHAIR.pgn' % (PACKAGE_DIR, os.sep, os.sep))
 FILE_SHIELD_DECO = ('%s%spgn%sSHIELD_DECO.pgn' % (PACKAGE_DIR, os.sep, os.sep))
 
-
 # Out of the box supported
 # HASH algorithms from pythons hashlib.
 HASH_MD5 = 0
@@ -66,9 +66,8 @@ HASH_SHA384 = 4
 HASH_SHA512 = 5
 
 # String representation of the hashes for debugging.
-HASHES = {0 : "MD5", 1 : "SHA1", 2 : "SHA224",
-          3 : "SHA256", 4 : "SHA384", 5 : "SHA512"}
-
+HASHES = {0: "MD5", 1: "SHA1", 2: "SHA224",
+          3: "SHA256", 4: "SHA384", 5: "SHA512"}
 
 im = Image.new(IMAGE_MODE, IMAGE_SIZE, BACKGROUND_COLOR)
 
@@ -84,7 +83,7 @@ pixelmap = []
 
 # Size of a single virtual pixel mapped to the real image size.
 dotsize = (IMAGE_SIZE[0] / VIRTUAL_RESOLUTION[0], IMAGE_SIZE[1] / VIRTUAL_RESOLUTION[1])
-
+# endregion
 
 def hash_input(inpt, algo=HASH_SHA256):
     """Generates a hash from a given String
@@ -163,12 +162,14 @@ def create_boots_layer(aspect, ip):
 
 def create_shield_layer(shield, hashcode):
     """Creates the layer for shields."""
-    return pgnreader.parse_pagan_file(('%s%spgn%s' % (PACKAGE_DIR, os.sep, os.sep)) + shield + '.pgn', hashcode, sym=False, invert=False)
+    return pgnreader.parse_pagan_file(('%s%spgn%s' % (PACKAGE_DIR, os.sep, os.sep)) + shield + '.pgn', hashcode,
+                                      sym=False, invert=False)
 
 
 def create_weapon_layer(weapon, hashcode, isSecond=False):
     """Creates the layer for weapons."""
-    return pgnreader.parse_pagan_file(('%s%spgn%s' % (PACKAGE_DIR, os.sep, os.sep)) + weapon + '.pgn', hashcode, sym=False, invert=isSecond)
+    return pgnreader.parse_pagan_file(('%s%spgn%s' % (PACKAGE_DIR, os.sep, os.sep)) + weapon + '.pgn', hashcode,
+                                      sym=False, invert=isSecond)
 
 
 def scale_pixels(color, layer):
@@ -225,15 +226,12 @@ def setup_pixelmap(hashcode):
     # Grinds for the aspect.
     aspect = hashgrinder.grind_hash_for_aspect(hashcode)
 
-
-    #Determine weapons of the avatar.
+    # Determine weapons of the avatar.
     weapons = hashgrinder.grind_hash_for_weapon(hashcode)
 
-
-
     if DEBUG:
-        print ("Current aspect: %r" % aspect)
-        print ("Current weapons: %r" % weapons)
+        print("Current aspect: %r" % aspect)
+        print("Current weapons: %r" % weapons)
 
     # There is just one body template. The optional pixels need to be mirrored so
     # the body layout will be symmetric to avoid uncanny looks.
@@ -284,13 +282,13 @@ def generate_by_hash(hashcode):
     hash String. Acts as the main accessor to pagan."""
     img = Image.new(IMAGE_MODE, IMAGE_SIZE, BACKGROUND_COLOR)
     if len(hashcode) < 32:
-        print ("hashcode must have lenght >= 32, %s" % hashcode)
+        print("hashcode must have lenght >= 32, %s" % hashcode)
         raise FalseHashError
 
     allowed = "0123456789abcdef"
     hashcheck = [c in allowed for c in hashcode]
     if False in hashcheck:
-        print ("hashcode has not allowed structure %s" % hashcode)
+        print("hashcode has not allowed structure %s" % hashcode)
         raise FalseHashError
 
     pixelmap = setup_pixelmap(hashcode)
