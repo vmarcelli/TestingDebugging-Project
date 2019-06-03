@@ -168,9 +168,8 @@ def test_generator__hash_input():
 
 # region Tests for Pgn Reader
 def test_parse_pagan_file():
-    PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
-    filename = ('%s%spgn%sTORSO.pgn' % (PACKAGE_DIR, os.sep, os.sep))
-    filename = 'C:\\Users\\Alberto\\Documents\\GitHub\\exterminators\\pagan-master\\pagan\\pgn\\TORSO.pgn'
+    package = os.path.dirname(os.path.abspath(__file__))
+    filename = ('%s%sTORSO.pgn' % (package, os.sep))
     hashcode = '000000123456000000123456000000123456000000000000'
     result = pr.parse_pagan_file(filename, hashcode)
     expected = [(5, 4), (5, 5), (5, 6), (5, 7), (6, 5), (6, 6), (6, 7), (7, 5), (7, 6), (7, 7), (8, 5), (8, 6), (8, 7)]
