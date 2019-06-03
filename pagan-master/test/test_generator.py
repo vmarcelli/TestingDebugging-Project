@@ -65,7 +65,7 @@ def generator_SHA384(input):
     #Generate the image using hash
     sha384.update(input)
     imgOne = pagan.generator.generate_by_hash(sha384.hexdigest())
-    imgTwo = pagan.generator.generate("", 3) #Default generator is md5
+    imgTwo = pagan.generator.generate("", 4) #Default generator is md5
     assert (imgOne is not None)
     assert (imgOne == imgTwo)
 
@@ -76,7 +76,7 @@ def generator_SHA512(input):
     #Generate the image using hash
     sha512.update(input)
     imgOne = pagan.generator.generate_by_hash(sha512.hexdigest())
-    imgTwo = pagan.generator.generate("", 3) #Default generator is md5
+    imgTwo = pagan.generator.generate("", 5) #Default generator is md5
     assert (imgOne is not None)
     assert (imgOne == imgTwo)
 
@@ -93,5 +93,7 @@ def test_hashGen():
     generator_SHA1(input)
     generator_SHA224(input)
     generator_SHA256(input)
+    generator_SHA384(input)
+    generator_SHA512(input)
 
     
