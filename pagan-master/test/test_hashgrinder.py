@@ -10,7 +10,7 @@
 # current update add tests for two functions
 # all other tests are blank
 
-import pagan.hashgrinder as hg
+from pagan.hashgrinder import * 
 
 import os
 
@@ -29,7 +29,7 @@ import os
 
 #finished
 def test_hashgrinder_init_weapon_list():
-    assert(len(hg.init_weapon_list()) == 71)
+    assert(len(init_weapon_list()) == 71)
 
 
 #region Description of Grind hash
@@ -42,21 +42,21 @@ def test_grind_hash_for_aspect():
     aspect = 16
     hc = '123456'
     last = int(hc, 16)
-    assert hg.grind_hash_for_aspect(hc) == hg. choose_aspect(hg.map_decision(max, aspect, last))
+    assert grind_hash_for_aspect(hc) ==  choose_aspect(map_decision(max, aspect, last))
     hc = 'af234b'
     last = int(hc, 16)
-    assert hg.grind_hash_for_aspect(hc) == hg.choose_aspect(hg.map_decision(max, aspect, last))
+    assert grind_hash_for_aspect(hc) == choose_aspect(map_decision(max, aspect, last))
 
 #finished
 def test_hex_to_rgb():
     # invalid input
-    assert hg.hex2rgb('#fffff') == 0
-    assert hg.hex2rgb('#fffffff') == 0
+    assert hex2rgb('#fffff') == 0
+    assert hex2rgb('#fffffff') == 0
 
     # valid input
-    assert hg.hex2rgb('#000000') == (0, 0, 0)
-    assert hg.hex2rgb('#888888') == (136, 136, 136)
-    assert hg.hex2rgb('#ffffff') == (255, 255, 255)
+    assert hex2rgb('#000000') == (0, 0, 0)
+    assert hex2rgb('#888888') == (136, 136, 136)
+    assert hex2rgb('#ffffff') == (255, 255, 255)
 
 #complete
 def test_grind_hash_for_colors():
@@ -67,24 +67,24 @@ def test_grind_hash_for_colors():
     hc_white = '000000'
     hc_black = 'ffffff'
 
-    assert len(hg.grind_hash_for_colors(hc_min)) == 8
-    assert len(hg.grind_hash_for_colors(hc_max)) == 8
-    assert len(hg.grind_hash_for_colors(hc_less_min)) == 8
-    assert hg.grind_hash_for_colors(hc_white)[0] == (0, 0, 0,)
-    assert hg.grind_hash_for_colors(hc_black)[7] == (255, 255, 255)
+    assert len(grind_hash_for_colors(hc_min)) == 8
+    assert len(grind_hash_for_colors(hc_max)) == 8
+    assert len(grind_hash_for_colors(hc_less_min)) == 8
+    assert grind_hash_for_colors(hc_white)[0] == (0, 0, 0,)
+    assert grind_hash_for_colors(hc_black)[7] == (255, 255, 255)
 
 #complete
 def test_grind_hash_for_weapon():
     hc = '000000123456'
     hc2 = '000000abcdef'
     max = 16777215
-    wlist = hg.init_weapon_list()
+    wlist = init_weapon_list()
     len_weapon_list = len(wlist)
     last = int(hc, 16)
     last2 = int(hc2,16)
 
-    assert hg.grind_hash_for_weapon(hc) == hg.choose_weapon(hg.map_decision(max, len_weapon_list, last), wlist)
-    assert hg.grind_hash_for_weapon(hc2) == hg.choose_weapon(hg.map_decision(max, len_weapon_list, last2), wlist)
+    assert grind_hash_for_weapon(hc) == choose_weapon(map_decision(max, len_weapon_list, last), wlist)
+    assert grind_hash_for_weapon(hc2) == choose_weapon(map_decision(max, len_weapon_list, last2), wlist)
 
 
 #complete
@@ -94,22 +94,22 @@ def test_choose_weapon():
     #list of weapons
     weapons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-    assert hg.choose_weapon(decision, weapons) == weapons[decision-1]
+    assert choose_weapon(decision, weapons) == weapons[decision-1]
 
     decision = 6
-    assert hg.choose_weapon(decision, weapons) == weapons[decision - 1]
+    assert choose_weapon(decision, weapons) == weapons[decision - 1]
     decision = 8
-    assert hg.choose_weapon(decision, weapons) == weapons[decision - 1]
+    assert choose_weapon(decision, weapons) == weapons[decision - 1]
 
 #returns a list aspect options from hashgrinder file
 #complete
 def test_choose_aspect():
 
-    assert hg.choose_aspect(0) == []
-    assert hg.choose_aspect(1) == ['HAIR']
-    assert hg.choose_aspect(7) == ['HAIR', 'PANTS', 'BOOTS']
-    assert hg.choose_aspect(16) == []
-    assert hg.choose_aspect(17) == []
+    assert choose_aspect(0) == []
+    assert choose_aspect(1) == ['HAIR']
+    assert choose_aspect(7) == ['HAIR', 'PANTS', 'BOOTS']
+    assert choose_aspect(16) == []
+    assert choose_aspect(17) == []
 
 #complete
 def test_map_decision():
@@ -120,21 +120,21 @@ def test_map_decision():
     b = 1
     c =1
 
-    assert hg.map_decision(a, b, c) == (b / (float(a) + 1)) * (float(c) + 1)
+    assert map_decision(a, b, c) == (b / (float(a) + 1)) * (float(c) + 1)
 
     a = 4
     b = 9
     c = 10
 
-    assert hg.map_decision(a, b, c) == (b / (float(a) + 1)) * (float(c) + 1)
+    assert map_decision(a, b, c) == (b / (float(a) + 1)) * (float(c) + 1)
 
 #complete
 def test_split_sequence():
     sequence = 'abcdefghijklmnopqrstuvwx'
 
-    result_8 = hg.split_sequence(sequence, 3)
-    result_2 = hg.split_sequence(sequence, 2)
-    result_12 = hg.split_sequence(sequence, 12)
+    result_8 = split_sequence(sequence, 3)
+    result_2 = split_sequence(sequence, 2)
+    result_12 = split_sequence(sequence, 12)
     assert len(result_8) == 8
     assert len(result_2) == 12
     assert len(result_12) == 2
@@ -146,10 +146,10 @@ def test_diff():
     a = 1
     b = 2
 
-    assert hg.diff(a, b) == 1
+    assert diff(a, b) == 1
 
     a = -1
     b = -2
 
-    assert hg.diff(a, b) == 1
+    assert diff(a, b) == 1
 # endregion
