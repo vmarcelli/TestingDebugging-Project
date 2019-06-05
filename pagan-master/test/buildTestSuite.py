@@ -1,13 +1,10 @@
 import sys
-import smtplib
 import win32com.client
 import pytest
 import test_generator as tGen
 import test_hashgrinder as tHash
 import test_pagan as tPagan
 import test_pgnreader as tPgn
-
-server = smtplib.SMTP('smtp.gmail.com', 587)
 
 emailSubject = ""
 emailBody = ""
@@ -45,17 +42,19 @@ def makeEmail(to, title, body):
     msg.Send()
     ol.Quit()
     
-def sendEmail():
+def sendEmail(eSubj):
     emailFile = open("emailBody.txt", "r")
     body = ""
     for line in emailFile:
         body += line
- 
-    makeEmail(emailResultTo, emailSubject, body)
+    
+    print(emailSubject)
+    makeEmail(emailResultTo, eSubj, body)
 
 
-
+#Main Driver Method
 def runTests():
+    #For number of loops run the pytest suite
     for tests in range(0, numberLoop):
         if(not runPytest()):
             emailSubject = "FAIL"
@@ -63,9 +62,7 @@ def runTests():
             emailSubject = "PASS"
 
     if(shoudlIEmail):
-        sendEmail()
+        sendEmail(emailSubject)
     
-    
-
-
+#Bottom Run
 runTests()
