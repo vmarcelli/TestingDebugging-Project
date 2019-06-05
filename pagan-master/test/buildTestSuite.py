@@ -1,6 +1,6 @@
 import sys
 import smtplib
-import email
+import win32com.client
 import pytest
 import test_generator as tGen
 import test_hashgrinder as tHash
@@ -35,23 +35,24 @@ def runPytest():
     else:
         return False
 
-
+def makeEmail(to, title, body):
+    olMailItem = 0
+    ol = win32com.client.Dispatch("Outlook.Application")
+    msg = ol.CreateItem(olMailItem)
+    msg.To = to
+    msg.Subject = title
+    msg.Body = body
+    msg.Send()
+    ol.Quit()
+    
 def sendEmail():
     emailFile = open("emailBody.txt", "r")
     body = ""
     for line in emailFile:
-        body = emailBody + line
-    
-    fromaddr = "marcelli@seattleu.edu"
-    toaddr = emailResultTo
-    msg = body
+        body += line
+ 
+    makeEmail(emailResultTo, emailSubject, body)
 
-    server.ehlo()
-    server.starttls()
-    server.ehlo()
-    server.login("vmarcelli.pop@gmail.com", "VmP0pP455")
-    server.sendmail(fromaddr, toaddr, msg)
-    server.close()
 
 
 def runTests():
