@@ -91,12 +91,16 @@ def index():
     # slogan, hist1, hist2, hist3 = escape(slogan), escape(hist1),\
     #     escape(hist2), escape(hist3)
     md5 = hashlib.md5()
+    slogan = bytes(slogan, "utf-8")
     md5.update(slogan)
     slogan_hash = md5.hexdigest()
+    hist1 = bytes(hist1, "utf-8")
     md5.update(hist1)
     hist1_hash = md5.hexdigest()
+    hist2 = bytes(hist2, "utf-8")
     md5.update(hist2)
     hist2_hash = md5.hexdigest()
+    hist3 = bytes(hist3, "utf-8")
     md5.update(hist3)
     hist3_hash = md5.hexdigest()
     return template(TEMPLATEINDEX, slogan=slogan,
@@ -109,10 +113,13 @@ def index():
 def hashimage(hashvalue):
     """generate image by hash, usese tempfile :-/"""
     tmpf = tempfile.mkstemp(".png")[1]
+    print(tmpf)
+    print(hashvalue)
+	
     image = pagan.Avatar("")
     image.img = pagan.generator.generate_by_hash(hashvalue)
     image.save("/", tmpf)
-    return static_file(tmpf, root="/")
+    return static_file(hashvalue+".png", root="C:/Users/Alberto/AppData/Local/Temp")
 
 debug(True)
-run(host='0.0.0.0', port=8080)
+run(host='localhost', port=8080)

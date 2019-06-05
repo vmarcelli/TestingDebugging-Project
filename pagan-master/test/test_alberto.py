@@ -165,7 +165,6 @@ def test_generator__hash_input():
     assert(len(gr.hash_input('aaa')) == 64)
 # endregion
 
-
 # region Tests for Pgn Reader
 def test_parse_pagan_file():
     package = os.path.dirname(os.path.abspath(__file__))
@@ -184,16 +183,19 @@ def test_decide_optional_pixels():
 
     assert pr.decideoptionalpixels(pixelmap, hashcode) == result
 
+
 def test_invert_vertical():
     pixelmap = [(0, 0), (1, 1), (15, 15), (8, 8)]
     result = [(0, 15), (1, 14), (15, 0), (8, 7)]
 
     assert pr.invert_vertical(pixelmap) == result
 
+
 def test_enforce_vertical_symmetry():
     pixelmap = [(0, 0), (1, 1), (15, 15), (8, 8)]
     result = [(0, 15), (1, 14), (15, 0), (8, 7), (0, 0), (1, 1), (15, 15), (8, 8)]
     assert pr.enforce_vertical_symmetry(pixelmap) == result
+
 
 def test_diff():
     a = 1
