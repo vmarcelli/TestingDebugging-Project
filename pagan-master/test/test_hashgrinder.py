@@ -27,27 +27,34 @@ import os
 # 5     ['SHIELD', 'MACE'], ['LONGSHIELD', 'DAGGER'], ['ROUNDSHIELD', 'DAGGER'], ['BUCKLER', 'DAGGER'], ['SHIELD', 'DAGGER']]
 # endregion
 
-#finished
+
+# checks the number of values in the result of init weapon list
+# the result should always be equal to the contents above
 def test_hashgrinder_init_weapon_list():
     assert(len(init_weapon_list()) == 71)
 
 
-#region Description of Grind hash
+# region Description of Grind hash
 # what does this piece of code do
-#endregion
+# endregion
 
-#complete
+# this test that the return of grind hash aspect
+# is the same as as running the choose aspect function
+# wrapped around map decision function
 def test_grind_hash_for_aspect():
     max = 16777215
     aspect = 16
     hc = '123456'
     last = int(hc, 16)
-    assert grind_hash_for_aspect(hc) ==  choose_aspect(map_decision(max, aspect, last))
+    assert grind_hash_for_aspect(hc) == choose_aspect(map_decision(max, aspect, last))
     hc = 'af234b'
     last = int(hc, 16)
     assert grind_hash_for_aspect(hc) == choose_aspect(map_decision(max, aspect, last))
 
-#finished
+
+# this checks that hex2rgb properly converts a
+# hexadecimal color to three rgb values
+# or a zero if not a valid hex number
 def test_hex_to_rgb():
     # invalid input
     assert hex2rgb('#fffff') == 0
@@ -58,7 +65,11 @@ def test_hex_to_rgb():
     assert hex2rgb('#888888') == (136, 136, 136)
     assert hex2rgb('#ffffff') == (255, 255, 255)
 
-#complete
+
+# this test the grind hash colors
+# this results in 8 colors
+# test checks that the size of input
+# and checks for valid output
 def test_grind_hash_for_colors():
     # valid input
     hc_min = '000000123456000000123456000000123456000000123456'
@@ -73,7 +84,10 @@ def test_grind_hash_for_colors():
     assert grind_hash_for_colors(hc_white)[0] == (0, 0, 0,)
     assert grind_hash_for_colors(hc_black)[7] == (255, 255, 255)
 
-#complete
+
+# checks the input against the output
+# to make sure it returns the proper result as determined
+# by the output of the wrapped functions
 def test_grind_hash_for_weapon():
     hc = '000000123456'
     hc2 = '000000abcdef'
@@ -87,7 +101,9 @@ def test_grind_hash_for_weapon():
     assert grind_hash_for_weapon(hc2) == choose_weapon(map_decision(max, len_weapon_list, last2), wlist)
 
 
-#complete
+# test choose weapon function
+# given input of a list, it should return
+# the value of the list at position decision-1
 def test_choose_weapon():
 
     decision = 7
@@ -101,8 +117,8 @@ def test_choose_weapon():
     decision = 8
     assert choose_weapon(decision, weapons) == weapons[decision - 1]
 
-#returns a list aspect options from hashgrinder file
-#complete
+
+# returns a list aspect options from hashgrinder file
 def test_choose_aspect():
 
     assert choose_aspect(0) == []
@@ -111,14 +127,14 @@ def test_choose_aspect():
     assert choose_aspect(16) == []
     assert choose_aspect(17) == []
 
-#complete
+
+# this functions result should match function given input
+# using the algorithm to make a decision
 def test_map_decision():
-
-
 
     a = 1
     b = 1
-    c =1
+    c = 1
 
     assert map_decision(a, b, c) == (b / (float(a) + 1)) * (float(c) + 1)
 
@@ -128,7 +144,8 @@ def test_map_decision():
 
     assert map_decision(a, b, c) == (b / (float(a) + 1)) * (float(c) + 1)
 
-#complete
+
+# checks that the function properly splits a sequence into chunks
 def test_split_sequence():
     sequence = 'abcdefghijklmnopqrstuvwx'
 
@@ -139,8 +156,8 @@ def test_split_sequence():
     assert len(result_2) == 12
     assert len(result_12) == 2
 
-#takes difference
-#complete
+
+# takes difference
 def test_diff():
 
     a = 1
