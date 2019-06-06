@@ -1,0 +1,7 @@
+this original package location:
+
+https://github.com/daboth/pagan/tree/master/pagan
+
+Our repo:
+
+https://github.com/vmarcelli/TestingDebugging-Project
