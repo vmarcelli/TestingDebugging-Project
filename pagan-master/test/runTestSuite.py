@@ -49,21 +49,25 @@ def sendEmail(eSubj):
     for line in emailFile:
         body += line
     
-    print(emailSubject)
     makeEmail(emailResultTo, eSubj, body)
 
 
 #Main Driver Method
 def runTests():
     #For number of loops run the pytest suite
+    timeStart = datetime.datetime.now()
     for tests in range(0, numberLoop):
         if(runPytest()):
             emailSubject = "FAIL"
         else:
             emailSubject = "PASS"
+    timeEnd = datetime.datetime.now()
 
     if(shoudlIEmail):
         sendEmail(emailSubject)
+    
+    print("Time Started:", timeStart)
+    print("Time Ended:", timeEnd)
     
 #Bottom Run
 runTests()
